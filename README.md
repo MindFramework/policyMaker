@@ -1,6 +1,6 @@
 ## What is policyMaker ?
 
-This package is used to create custom access policies for server software. **Apache**, **Microsoft ISS** and **LiteSpeed** software are supported.
+This package serves to create custom access policies for server software. **Apache**, **Microsoft ISS** and **LiteSpeed** software are supported.
 
 
 **Out-of-class use:**

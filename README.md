@@ -1,6 +1,6 @@
 ## What is policyMaker ?
 
-It is used to obtain the server software name on the operating system on which the project is running. **Apache**, **Microsoft ISS** and **LiteSpeed** software are supported, other server software is named **Unknown**.
+This package is used to create custom access policies for server software. **Apache**, **Microsoft ISS** and **LiteSpeed** software are supported.
 
 
 **Out-of-class use:**

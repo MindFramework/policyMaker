@@ -2,6 +2,30 @@
 
 This package serves to create custom access policies for server software. **Apache**, **Microsoft ISS** and **LiteSpeed** software are supported.
 
+**Out-of-class use:**
+
+code:
+```php
+require_once('Mind.php');
+$m = new Mind([
+    'policy'=>array(
+        'allow'=>'public' // or array
+    )
+]);
+$m::aliyilmaz('policyMaker')->policyMaker();
+```
+
+**When using it in the class:**
+
+code:
+```php
+self::$conf = [
+    'policy'=>array(
+        'allow'=>'public' // or array
+    )
+];
+self::aliyilmaz('policyMaker')->policyMaker();
+```
 
 **Out-of-class use:**
 
@@ -29,7 +53,10 @@ self::aliyilmaz('policyMaker')->policyMaker();
 
 output:
 ```php
-Server access files are created by server software type. Blocking access to directories is always a priority. Therefore, if a conflicting directory is detected in the directory definitions, access is denied. Access to directories that are not specifically allowed is always blocked.
+Server access files are created by server software type. 
+Blocking access to directories is always a priority. 
+Therefore, if a conflicting directory is detected in the directory definitions, access is denied. 
+Access to directories that are not specifically allowed is always blocked.
 ```
 
 ---

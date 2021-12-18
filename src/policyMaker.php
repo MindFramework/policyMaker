@@ -3,7 +3,7 @@
 /**
  *
  * @package    policyMaker
- * @version    Release: 1.0.0
+ * @version    Release: 1.0.1
  * @license    GPL3
  * @author     Ali YILMAZ <aliyilmaz.work@gmail.com>
  * @category   Access policy generator
@@ -102,17 +102,21 @@ class policyMaker extends Mind
         
         // The directories are determined.
         foreach (array_filter(glob('*'), 'is_dir') as $dir) {
-
+            
+            // Default policy content
+            $content = $policy['content_deny'];
+            
             // Checking server policy file existence.
             if(!file_exists($dir.'/'.$policy['filename'])){
 
-                // If there are directories whose access is not allowed
-                if(in_array($dir, $this->policy['deny'])) {
-                    $content = $policy['content_deny'];} else {$content = $policy['content_allow'];}
+                // If it's a allowed directory, the policy is assigned.
+                if(in_array($dir, $this->policy['allow'])) { 
+                    $content = $policy['content_allow']; }
 
-                // Access is denied if there are no allowed directories or if there are conflicting directories.
-                if(empty($this->policy['allow']) OR !empty(array_intersect($this->policy['allow'], $this->policy['deny']))){
-                    $content = $policy['content_deny']; } else {$content = $policy['content_allow'];}
+                // If both allowed and disallowed directories conflict, 
+                // an access block policy is assigned.
+                if(!empty(array_intersect($this->policy['allow'], $this->policy['deny']))){
+                    $content = $policy['content_deny']; }
 
                 // The policy file is created.
                 $politician->write($content, $dir.'/'.$policy['filename']);

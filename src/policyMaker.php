@@ -3,7 +3,7 @@
 /**
  *
  * @package    policyMaker
- * @version    Release: 1.0.0
+ * @version    Release: 1.0.1
  * @license    GPL3
  * @author     Ali YILMAZ <aliyilmaz.work@gmail.com>
  * @category   Access policy generator
@@ -13,7 +13,7 @@
 class policyMaker extends Mind
 {
     public $policy = [
-        'allow'=>[],
+        'allow'=>['public'],
         'deny'=>[]
     ];
 
@@ -119,6 +119,11 @@ class policyMaker extends Mind
             }
                 
         }
+    }
+
+    public function __construct($conf = null){
+        if(isset($conf['policy']['allow'])) { $this->setAllow($conf['policy']['allow']); }
+        if(isset($conf['policy']['deny'])) { $this->setDeny($conf['policy']['deny']); }
     }
 
 }

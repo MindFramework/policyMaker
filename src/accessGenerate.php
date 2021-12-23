@@ -2,15 +2,15 @@
 
 /**
  *
- * @package    policyMaker
- * @version    Release: 1.0.2
+ * @package    accessGenerate
+ * @version    Release: 1.0.3
  * @license    GPL3
  * @author     Ali YILMAZ <aliyilmaz.work@gmail.com>
  * @category   Access policy generator
- * @link       https://github.com/aliyilmaz/policyMaker
+ * @link       https://github.com/aliyilmaz/accessGenerate
  *
  */
-class policyMaker extends Mind
+class accessGenerate extends Mind
 {
     public $policy = [
         'allow'=>[],
@@ -31,11 +31,12 @@ class policyMaker extends Mind
         return $this;
     }
 
-    public function policyMaker(){
+    public function accessGenerate(){
 
         $policy = [];
 
-        switch (self::aliyilmaz('getSoftware')->getSoftware()) {
+        $software = self::aliyilmaz('getSoftware')->getSoftware();
+        switch ($software) {
             case ('Apache' || 'LiteSpeed'):
 
                 $policy = array(
@@ -93,35 +94,38 @@ class policyMaker extends Mind
             break;
         }
 
-        // Defining write package to file
-        $politician = self::aliyilmaz('write');
+        if($software != 'Nginx'){
 
-        // The route policy is being created.
-        if(!file_exists($policy['filename'])){
-            $politician->write($policy['content_public'], $policy['filename']); }
-        
-        // The directories are determined.
-        foreach (array_filter(glob('*'), 'is_dir') as $dir) {
+            // Defining write package to file
+            $politician = self::aliyilmaz('write');
+    
+            // The route policy is being created.
+            if(!file_exists($policy['filename'])){
+                $politician->write($policy['content_public'], $policy['filename']); }
             
-            // Default policy content
-            $content = $policy['content_deny'];
-            
-            // Checking server policy file existence.
-            if(!file_exists($dir.'/'.$policy['filename'])){
-
-                // If it's a allowed directory, the policy is assigned.
-                if(in_array($dir, $this->policy['allow'])) { 
-                    $content = $policy['content_allow']; }
-
-                // If both allowed and disallowed directories conflict, 
-                // an access block policy is assigned.
-                if(!empty(array_intersect($this->policy['allow'], $this->policy['deny']))){
-                    $content = $policy['content_deny']; }
-
-                // The policy file is created.
-                $politician->write($content, $dir.'/'.$policy['filename']);
-            }
+            // The directories are determined.
+            foreach (array_filter(glob('*'), 'is_dir') as $dir) {
                 
+                // Default policy content
+                $content = $policy['content_deny'];
+                
+                // Checking server policy file existence.
+                if(!file_exists($dir.'/'.$policy['filename'])){
+    
+                    // If it's a allowed directory, the policy is assigned.
+                    if(in_array($dir, $this->policy['allow'])) { 
+                        $content = $policy['content_allow']; }
+    
+                    // If both allowed and disallowed directories conflict, 
+                    // an access block policy is assigned.
+                    if(!empty(array_intersect($this->policy['allow'], $this->policy['deny']))){
+                        $content = $policy['content_deny']; }
+    
+                    // The policy file is created.
+                    $politician->write($content, $dir.'/'.$policy['filename']);
+                }
+                    
+            }
         }
     }
 

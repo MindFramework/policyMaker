@@ -2,15 +2,15 @@
 
 /**
  *
- * @package    accessGenerate
- * @version    Release: 1.0.3
+ * @package    policyMaker
+ * @version    Release: 1.0.0
  * @license    GPL3
  * @author     Ali YILMAZ <aliyilmaz.work@gmail.com>
- * @category   Access policy generator
- * @link       https://github.com/aliyilmaz/accessGenerate
+ * @category   Server policy maker
+ * @link       https://github.com/aliyilmaz/policyMaker
  *
  */
-class accessGenerate extends Mind
+class policyMaker extends Mind
 {
     public $policy = [
         'allow'=>[],
@@ -31,7 +31,7 @@ class accessGenerate extends Mind
         return $this;
     }
 
-    public function accessGenerate(){
+    public function policyMaker(){
 
         $policy = [];
 

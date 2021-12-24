@@ -1,4 +1,4 @@
-## What is accessGenerate ?
+## What is policyMaker ?
 
 This package serves to create custom access policies for server software. **Apache**, **Microsoft ISS**, **LiteSpeed** and **Nginx** software are supported.
 
@@ -12,7 +12,7 @@ $m = new Mind([
         'allow'=>'public' // or array
     )
 ]);
-$m::aliyilmaz('accessGenerate')->accessGenerate();
+$m::aliyilmaz('policyMaker')->policyMaker();
 ```
 
 **When using it in the class:**
@@ -24,7 +24,7 @@ self::$conf = [
         'allow'=>'public' // or array
     )
 ];
-self::aliyilmaz('accessGenerate')->accessGenerate();
+self::aliyilmaz('policyMaker')->policyMaker();
 ```
 
 **Out-of-class use:**
@@ -33,22 +33,22 @@ code:
 ```php
 require_once('Mind.php');
 $m = new Mind();
-$m::aliyilmaz('accessGenerate')->accessGenerate();
-// $m::aliyilmaz('accessGenerate')->setAllow('public')->accessGenerate();
-// $m::aliyilmaz('accessGenerate')->setDeny('developer')->accessGenerate();
-// $m::aliyilmaz('accessGenerate')->setDeny('developer')->setAllow('public')->accessGenerate();
-// $m::aliyilmaz('accessGenerate')->setDeny(['developer', 'app'])->setAllow(['public', 'files'])->accessGenerate();
+$m::aliyilmaz('policyMaker')->policyMaker();
+// $m::aliyilmaz('policyMaker')->setAllow('public')->policyMaker();
+// $m::aliyilmaz('policyMaker')->setDeny('developer')->policyMaker();
+// $m::aliyilmaz('policyMaker')->setDeny('developer')->setAllow('public')->policyMaker();
+// $m::aliyilmaz('policyMaker')->setDeny(['developer', 'app'])->setAllow(['public', 'files'])->policyMaker();
 ```
 
 **When using it in the class:**
 
 code:
 ```php
-self::aliyilmaz('accessGenerate')->accessGenerate();
-// self::aliyilmaz('accessGenerate')->setAllow('public')->accessGenerate();
-// self::aliyilmaz('accessGenerate')->setDeny('developer')->accessGenerate();
-// self::aliyilmaz('accessGenerate')->setDeny('developer')->setAllow('public')->accessGenerate();
-// self::aliyilmaz('accessGenerate')->setDeny(['developer', 'app'])->setAllow(['public', 'files'])->accessGenerate();
+self::aliyilmaz('policyMaker')->policyMaker();
+// self::aliyilmaz('policyMaker')->setAllow('public')->policyMaker();
+// self::aliyilmaz('policyMaker')->setDeny('developer')->policyMaker();
+// self::aliyilmaz('policyMaker')->setDeny('developer')->setAllow('public')->policyMaker();
+// self::aliyilmaz('policyMaker')->setDeny(['developer', 'app'])->setAllow(['public', 'files'])->policyMaker();
 ```
 
 output:
@@ -89,4 +89,4 @@ location ~ /(app)/ {
 ---
 
 ### License
-Instructions and files in this directory are shared under the [GPL3](https://github.com/aliyilmaz/accessGenerate/blob/main/LICENSE) license.
+Instructions and files in this directory are shared under the [GPL3](https://github.com/aliyilmaz/policyMaker/blob/main/LICENSE) license.
